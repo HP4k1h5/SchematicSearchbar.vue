@@ -1,0 +1,25 @@
+{
+  "name": "schematic-searchbar.vue",
+  "version": "0.0.0",
+  "description": "A schematic boolean searchbar interface for Vue.js.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/HP4k1h5/SchematicSearchbar.vue.git"
+  },
+  "keywords": [
+    "search",
+    "boolean",
+    "interface",
+    "vue"
+  ],
+  "author": "hp4k1h5",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HP4k1h5/SchematicSearchbar.vue/issues"
+  },
+  "homepage": "https://github.com/HP4k1h5/SchematicSearchbar.vue#readme"
+}
