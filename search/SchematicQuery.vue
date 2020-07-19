@@ -18,24 +18,28 @@
 import { parseQuery } from '@hp4k1h5/aqlquerybuilder.js'
 
 export default {
-  computed: {
-    query: {
-      get: function() {
-        return this.$store.state.search.query
-      },
-      set: function(val) {
-        this.$store.state.search.query = val
-      },
-    },
+  name: 'SchematicQuery',
 
-    queryArr: {
-      get: function() {
-        return this.$store.state.search.queryArr
-      },
-      set: function(val) {
-        this.$store.state.search.queryArr = val
-      },
-    },
+  props: ['queryString', 'queryArr'],
+
+  computed: {
+    /* query: { */
+    /*   get: function() { */
+    /*     return this.$store.state.search.query */
+    /*   }, */
+    /*   set: function(val) { */
+    /*     this.$store.state.search.query = val */
+    /*   }, */
+    /* }, */
+
+    /* queryArr: { */
+    /*   get: function() { */
+    /*     return this.$store.state.search.queryArr */
+    /*   }, */
+    /*   set: function(val) { */
+    /*     this.$store.state.search.queryArr = val */
+    /*   }, */
+    /* }, */
   },
 
   methods: {
@@ -71,15 +75,6 @@ export default {
     bolds(p) {
       return ['phr', 'prox'].includes(p.type)
     },
-
-    colorMap(op) {
-      const m = {
-        '+': '#65be65',
-        '-': '#fe3345',
-        '?': '#23deb5',
-      }
-      return m[op]
-    },
   },
 
   watch: {
@@ -96,13 +91,7 @@ export default {
 }
 </script>
 
-<style scoped>
-.schema-box {
-  padding: 12px;
-  border: solid 2px #555;
-  font-size: 18px;
-  font-weight: bold;
-}
+<style scoped src="../style/index.css">
 span {
   padding: 2px;
 }

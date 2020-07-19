@@ -1,0 +1,43 @@
+.search-box {
+  display: inline-block;
+  min-width: 700px;
+  max-width: 900px;
+  margin: 1%;
+  border: solid 1px black;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+}
+
+.schema-box {
+  padding: 12px;
+  border: solid 2px #555;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.querying {
+  display: inline-flex;
+  overflow: hidden;
+  height: 1.3em;
+  margin-top: -0.3em;
+  line-height: 1.5em;
+  vertical-align: text-bottom;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.querying.dots2::after {
+  content: "⠋\A⠙\A⠚\A⠞\A⠖\A⠦\A⠴\A⠲\A⠳";
+  animation: spin9 1s steps(9) infinite;
+  font-weight: bold;
+  color: #000;
+}
+
+@keyframes spin9 {
+  to {
+    transform: translateY(-13.5em);
+  }
+}

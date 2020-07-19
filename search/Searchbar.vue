@@ -1,30 +1,22 @@
 <template>
-  <div style>
-    <blockquote style="background-color: #ac9;">
-      <b>help</b>: add query terms and "phrases" to the search bar. if you
-      prefix a term with one of
-      <span style="font-family:monospace">'+', '?', '-',</span> that term will
-      be counted as one of AND, OR, or NOT. You can click on the operator in the
-      schematic window to change the operation. Hit enter or click "buildQuery"
-      to generate valid AQL.
-    </blockquote>
-    <span style="display: flex; align-items: center;">
+  <div >
+    <span class="search-bar">
       <textarea
-        v-model="query"
+        v-model="queryString"
         ref="searchbar"
         id="searchbar"
         :rows="rows"
         wrap="hard"
-        @keydown.enter.prevent="buildQuery"
+        @keydown.enter.prevent="query"
         :autofocus="'autofocus'"
       />
+    <!-- use <slot></slot> instead for each span/button --> 
       <span
         v-if="querying"
-        class="loading dots2"
-        style="display:inline-flex"
+        class="querying dots2"
       ></span>
       <span v-else>
-        <button @click="buildQuery">build AQL query</button>
+        <button @click="query">query</button>
         <!-- <button @click="saveQuery">
           <span>save</span>
         </button>-->
@@ -39,32 +31,7 @@ import { buildAQL } from '@hp4k1h5/aqlquerybuilder.js'
 
 export default {
   name: 'Searchbar',
-
-  computed: {
-    ...mapState({
-      filters: state => state.search.filters,
-      querying: state => state.search.querying,
-    }),
-
-    query: {
-      get: function() {
-        return this.$store.state.search.query
-      },
-
-      set: function(val) {
-        this.$store.commit('search/SET_QUERY', val)
-      },
-    },
-
-    genAQL: {
-      get: function() {
-        return this.$store.state.search.genAQL
-      },
-      set: function(val) {
-        this.$store.state.search.genAQL = val
-      },
-    },
-  },
+  props: [ 'queryString', 'querying' ],
 
   data() {
     return {
@@ -74,13 +41,8 @@ export default {
   },
 
   methods: {
-    async buildQuery() {
-      this.genAQL = buildAQL({
-        view: 'view-name',
-        collections: [{ name: 'col_name', analyzer: 'analyzer_name' }],
-        terms: this.query,
-        filters: this.filters,
-      })
+    query() {
+      this.$emit('query')
     },
 
     calculateInputHeight() {
@@ -99,7 +61,6 @@ export default {
     this.calculateInputHeight()
     await this.$nextTick()
     this.$refs.searchbar.focus()
-    this.buildQuery()
   },
 
   watch: {
@@ -110,7 +71,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped src="../style/index.css">
 .select {
   display: inline-flex;
   max-height: 28px;
